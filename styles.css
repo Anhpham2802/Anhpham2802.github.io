@@ -180,22 +180,42 @@ Menu
 }
 
 .item-info header {
-  display: flex;
+  /* display: flex; */
   justify-content: space-between;
   border-bottom: 0.5px dotted hsl(210, 22%, 49%);
 }
 
 .item-info h4 {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.05rem;
 }
 
 .price {
+  margin-left: 5cm;
   color: #c59d5f;
 }
 
 .item-text {
   margin-bottom: 0;
   padding-top: 1rem;
+  position: relative;
+}
+.item-desc{
+  width: 300px;
+  height: fit-content;
+}
+.custom-arrow{
+  position: absolute;
+  right: 5px;
+  bottom: -20px;
+  opacity: 0.5;
+  color: rgb(15, 15, 96);
+}
+
+.hidden{
+  display: none;
+}
+.display{
+  display: block;
 }
 
 @media screen and (min-width: 768px) {
