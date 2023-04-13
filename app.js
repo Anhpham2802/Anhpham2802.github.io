@@ -80,11 +80,58 @@ const menu = [
     desc: `Mì Quảng là một món ăn đặc sản không thể bỏ qua khi đặt chân đến vùng đất miền Trung kỳ vĩ. Đồng thời, nó cũng là một trong 12 món ăn Việt Nam được công nhận giá trị ẩm thực châu Á và được Roughguides gợi ý là một trong 10 món ăn nhất định phải thử khi đến Việt Nam.`,
   },
 ];
+
+// local reviews data
+const reviews = [
+  {
+    id: 1,
+    name: 'ナルトくん',
+    job: 'Người đi bụi',
+    img: './images/avatar1.jpg',
+    text: "非常に良い食べ物。私は間違いなく再びここに来るでしょう。",
+  },
+  {
+    id: 2,
+    name: 'Nguyễn Nhung',
+    job: 'Chuyên gia ẩm thực',
+    img: './images/avatar2.jpg',
+    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iustoasperiores debitis incidunt, eius earum ipsam cupiditate libero?Iste, doloremque nihil?',
+  },
+  {
+    id: 3,
+    name: 'Lorem ipsum',
+    job: 'Sinh viên',
+    img: './images/avatar3.png',
+    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iustoasperiores debitis incidunt.',  
+  },
+  {
+    id: 4,
+    name: 'măm măm',
+    job: 'Giám đôc',
+    img: './images/avatar4.jpg',
+    text: 'Lorem ipsum dolor sit amet consectetur adt. Iustoasperiores debitis incidunt, eius earum itate libero?Iste, doloremque nihil?',
+   },
+];
+
+//navbar
+const navToggle = document.querySelector(".nav-toggle");
+const links = document.querySelector(".links");
+
+navToggle.addEventListener("click", function () {
+  // console.log(links.classList);
+  // console.log(links.classList.contains("random"));
+  // console.log(links.classList.contains("links"));
+  // if (links.classList.contains("show-links")) {
+  //   links.classList.remove("show-links");
+  // } else {
+  //   links.classList.add("show-links");
+  // }
+  links.classList.toggle("show-links");
+});
+
 // get parent element
 const sectionCenter = document.querySelector(".section-center");
 const btnContainer = document.querySelector(".btn-container");
-// const photo = document.querySelector(".photo");
-// const detail = document.querySelector(".item-text");
 
 // display all items when page loads
 window.addEventListener("DOMContentLoaded", function () {
@@ -102,7 +149,8 @@ function diplayMenuItems(menuItems) {
           </a>
           <div class="item-info">
             <header>
-              <h4>${item.title}</h4>
+              <h4>${item.title} 
+              <i class="fa-solid fa-heart" onclick="addHeart(event)"></i></h4>
               <h4 class="price">$${item.price}</h4>
             </header>
             <div class="item-text">
@@ -121,6 +169,11 @@ function diplayMenuItems(menuItems) {
   sectionCenter.innerHTML = displayMenu;
 }
 
+function addHeart(event) {
+  const iconHeart = event.target;
+  iconHeart.style.color = "red";
+}
+
 function displayDetail(event) {
   const itemDetailNode = event.target;
   const iconInfoNode = event.target.closest('.item-info');
@@ -129,8 +182,7 @@ function displayDetail(event) {
 
   const childNode = Array.from(iconInfoNode.querySelectorAll('*')).filter(item => item.classList.contains('item-desc'));
   childNode[0].classList.add("display");
-  const childSolidNode = Array.from(iconInfoNode.querySelectorAll('*')).filter(item => item.classList.contains('fa-solid'));
-  console.log(childSolidNode);
+  const childSolidNode = Array.from(iconInfoNode.querySelectorAll('*')).filter(item => item.classList.contains('custom-arrow'));
   childSolidNode[0].classList.add("display");
 };
 
@@ -160,7 +212,7 @@ function displayMenuButtons() {
   const categoryBtns = categories
     .map(function (category) {
       return `<button type="button" class="filter-btn" data-id=${category}>
-          ${category}
+          ${category} 
         </button>`;
     })
     .join("");
@@ -173,8 +225,9 @@ function displayMenuButtons() {
     btn.addEventListener("click", function (e) {
       // console.log(e.currentTarget.dataset);
       const category = e.currentTarget.dataset.id;
+      //console.log(category);
       const menuCategory = menu.filter(function (menuItem) {
-        // console.log(menuItem.category);
+        console.log(menuItem.category);
         if (menuItem.category === category) {
           return menuItem;
         }
@@ -187,3 +240,59 @@ function displayMenuButtons() {
     });
   });
 }
+
+
+//review
+// select items
+const img = document.getElementById('person-img');
+const author = document.getElementById('author');
+const job = document.getElementById('job');
+const info = document.getElementById('info');
+
+const prevBtn = document.querySelector('.prev-btn');
+const nextBtn = document.querySelector('.next-btn');
+const randomBtn = document.querySelector('.random-btn');
+
+// set starting item
+let currentItem = 0;
+
+// load initial item
+window.addEventListener('DOMContentLoaded', function () {
+  const item = reviews[currentItem];
+  img.src = item.img;
+  author.textContent = item.name;
+  job.textContent = item.job;
+  info.textContent = item.text;
+});
+
+// show person based on item
+function showPerson(person) {
+  const item = reviews[person];
+  img.src = item.img;
+  author.textContent = item.name;
+  job.textContent = item.job;
+  info.textContent = item.text;
+}
+// show next person
+nextBtn.addEventListener('click', function () {
+  currentItem++;
+  if (currentItem > reviews.length - 1) {
+    currentItem = 0;
+  }
+  showPerson(currentItem);
+});
+// show prev person
+prevBtn.addEventListener('click', function () {
+  currentItem--;
+  if (currentItem < 0) {
+    currentItem = reviews.length - 1;
+  }
+  showPerson(currentItem);
+});
+// show random person
+randomBtn.addEventListener('click', function () {
+  console.log('hello');
+
+  currentItem = Math.floor(Math.random() * reviews.length);
+  showPerson(currentItem);
+});

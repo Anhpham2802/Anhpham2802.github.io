@@ -8,12 +8,32 @@
   <!-- font-awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
   <script src="https://kit.fontawesome.com/f1f646c5e0.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/f1f646c5e0.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
   <!-- styles -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-  <section class="menu">
+  <nav>
+    <div class="nav-center">
+      <!-- nav header -->
+      <div class="nav-header">
+        <img src="./images/menu.png" class="logo" alt="logo" />
+        <a href="index.html">Home</a>
+        <button class="nav-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      <p>Những món ngon Hà Nội <br>thưởng thức ngày se lạnh thì còn gì bằng</p>
+      <ul class="user-icons">
+        <i class="fa-regular fa-circle-user"></i>
+        <i class="fa-solid fa-baby-carriage"></i>
+    </div>
+  </nav>
+
+ <!-- menu -->
+  <section class="container">
     <!-- title -->
     <div class="title">
       <h2>our menu</h2>
@@ -25,8 +45,46 @@
     <!-- menu items -->
     <div class="section-center">
     </div>
+
+    <!-- review -->
+    <article class="review">
+      <div class="img-container">
+        <img src="person-1.jpeg" id="person-img" alt="" />
+      </div>
+      <h4 id="author">sara jones</h4>
+      <p id="job">ux designer</p>
+      <p id="info">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto
+        asperiores debitis incidunt, eius earum ipsam cupiditate libero?
+        Iste, doloremque nihil?
+      </p>
+      <!-- prev next buttons-->
+      <div class="button-container">
+        <button class="prev-btn">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="next-btn">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+      
+      <!-- random button -->
+      <button class="random-btn">random review</button>
+    </article>
   </section>
-  
+
+  <footer>
+    <div class="social-icons">
+      <!-- social media -->
+      <i class="fab fa-facebook"></i>
+      <i class="fab fa-twitter"></i>
+      <i class="fab fa-behance"></i>
+      <i class="fab fa-linkedin"></i>
+      <i class="fab fa-sketch"></i>
+    </div>
+    <p>AnhPham2802</p>
+  </footer>
+
   <!-- javascript -->
   <script src="app.js"></script>
 </body>
